@@ -37,7 +37,7 @@ section{padding-top:44px}
 h2{font-size:clamp(22px,4vw,30px);line-height:1.35}
 .intro{color:var(--mute);margin:10px 0 18px;max-width:820px}
 .car{position:relative}
-.rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 14px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.rail::-webkit-scrollbar{display:none}.rail{scrollbar-width:none;-ms-overflow-style:none;display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 14px;-webkit-overflow-scrolling:touch;}
 .card{flex:0 0 min(300px,78vw);scroll-snap-align:start;background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(14,26,20,.08);display:flex;flex-direction:column;transition:transform .15s}
 .card:hover{transform:translateY(-3px)}
 .ph{aspect-ratio:16/9;background:linear-gradient(135deg,#1d3a22,#3d6b1f);position:relative;overflow:hidden}
@@ -59,6 +59,15 @@ h2{font-size:clamp(22px,4vw,30px);line-height:1.35}
 .sotitem p{font-size:16px;font-weight:600}
 .sotitem .soon{display:inline-block;color:var(--mute);font-size:14px;font-weight:400}
 .yt{aspect-ratio:16/9;width:100%;border:0;border-radius:10px;margin-top:8px;background:#000}
+.tl{margin:34px 0 4px;background:var(--card);border-radius:14px;padding:22px 22px 8px;box-shadow:0 2px 10px rgba(14,26,20,.08)}
+.tl h3{font-size:20px;margin-bottom:14px}
+.tl ol{list-style:none;border-left:3px solid var(--g);margin-left:6px}
+.tl li{position:relative;padding:0 0 18px 20px}
+.tl li:before{content:"";position:absolute;left:-9px;top:7px;width:15px;height:15px;border-radius:50%;background:var(--g);border:3px solid #fff}
+.tl li.hot:before{background:var(--ink);box-shadow:0 0 0 3px var(--g)}
+.tl b{display:block;color:#3d6b1f;font-size:15px}
+.tl p{font-size:16px;line-height:1.6}
+.tl a{color:#3d6b1f;text-decoration:underline;font-size:14px}
 footer{background:var(--ink);color:#9fb09a;text-align:center;padding:26px 16px;font-size:14px}
 </style>
 </head>
@@ -142,12 +151,12 @@ var PARTS=[
 
 /* 12/5 TVBS特別報導SOT：有填YouTube影片ID才顯示該則影片；全部未填時整區預設隱藏（網址加?preview=1可預覽） */
 var SOT_UNITS=[
-{n:"單元一",t:"33年的輝達可以沒有黃仁勳嗎？",i:[["1-1","車庫創業到瀕臨破產"],["1-2","豪賭CUDA與股價狂飆"],["1-3","扁平化管理與關鍵人物風險"]]},
-{n:"單元二",t:"黃仁勳的全球麻吉外交，日韓台誰能替代？",i:[["2-1","韓國的烤五花肉與炸雞聯盟"],["2-2","日本首相官邸與大阪AI工廠"],["2-3","日韓台AI鐵三角能被繼承嗎"]]},
-{n:"單元三",t:"私德與國安：美國企業治理紅線",i:[["3-1","美企CEO下台先例：私德還是法規"],["3-2","當緋聞升級為國安調查"],["3-3","董事會的防禦機制與兩難"]]},
-{n:"單元四",t:"黃仁勳在AI發展的歷史級貢獻",i:[["4-1","打破摩爾定律的黃氏定律"],["4-2","CUDA與全棧式布局的護城河"],["4-3","實體AI與機器人下一步"]]},
-{n:"單元五",t:"華府鷹派與川普的政經大戲",i:[["5-1","華府鷹派的國安算盤"],["5-2","川普的一手大棒一手橄欖枝"],["5-3","聽證會後的可能走向"]]},
-{n:"單元六",t:"台灣力挺！他讓台灣被世界看到",i:[["6-1","把台灣放進世界中心的名場面"],["6-2","台北101點燈與應援影片"],["6-3","從夜市攤商到科技學子的聲音"]]}
+{n:"單元一",t:"33年的輝達可以沒有黃仁勳嗎？",i:[["1-1","車庫創業到瀕臨破產"],["1-2","豪賭CUDA與市值狂飆"],["1-3","11天震撼教育，單日暴漲31.48%"]]},
+{n:"單元二",t:"黃仁勳的全球麻吉外交，日韓台誰能替代？",i:[["2-1","韓國的烤五花肉與炸雞聯盟"],["2-2","日本首相官邸與大阪國家級AI工廠"],["2-3","馬斯克高喊「錯誤已糾正」，日韓台鐵三角吃下定心丸"]]},
+{n:"單元三",t:"私德、國安與閃電復職的治理破口",i:[["3-1","美企CEO下台先例：私德與治理紅線"],["3-2","當緋聞升級為國安調查"],["3-3","董事會架設合規防火牆內幕"]]},
+{n:"單元四",t:"黃仁勳在AI發展的歷史級貢獻",i:[["4-1","打破摩爾定律的黃氏定律"],["4-2","CUDA生態系與全棧布局的護城河"],["4-3","實體AI與機器人帝國"]]},
+{n:"單元五",t:"川普的免死金牌與國會鷹派反撲",i:[["5-1","直通董事會：川普與范斯的救兵內幕"],["5-2","免死金牌的代價：川普的交易藝術"],["5-3","12月聽證會風暴未歇，兩黨國會交鋒"]]},
+{n:"單元六",t:"台灣主場！101點燈見證王者歸來",i:[["6-1","名場面回顧：把台灣放進世界中心的人"],["6-2","台北101點燈應援：從雪中送炭到王者歸來"],["6-3","夜市老友加碼請客：等你回來吃豆花"]]}
 ];
 var SOT_VIDEO={"1-1":"","1-2":"","1-3":"","2-1":"","2-2":"","2-3":"","3-1":"","3-2":"","3-3":"","4-1":"","4-2":"","4-3":"","5-1":"","5-2":"","5-3":"","6-1":"","6-2":"","6-3":""};
 
@@ -159,6 +168,18 @@ var FAQ=[
 {q:"黃仁勳回鍋對亞洲與台廠有什麼影響？",a:"消息帶動亞股反攻，韓股一度觸發熔斷、日經大漲；輝達在他離任期間也宣布擴大與台積電、矽品、景碩等台灣供應鏈合作。",ref:["4055253","world"]}
 ];
 
+var TL=[
+["11/12","輝達宣布黃仁勳辭去總裁、執行長與董事職務，財務長柯蕾絲暫代執行長。"],
+["11/13","台北市政府表示，輝達台灣子公司依約履行義務，預期換帥不影響建設規劃。"],
+["11/16","美國總統川普公開表示，黃仁勳回歸「肯定不是個壞主意」。"],
+["11/17","輝達公布財報，第三季營收1,158億美元、年增103%；董事長瓊斯表示無意讓黃仁勳回任，董事會並成立國家安全與出口管制監督委員會。"],
+["11/19","輝達在美西18日召開黃仁勳請辭後首場全員大會，董事長瓊斯坦言找不到「另一個黃仁勳」，共同創辦人馬拉科夫斯基一度哽咽，代理執行長克雷斯宣布加薪與股票獎勵提前到12月。"],
+["11/19","加州檢察長發出傳票，追查先進晶片是否違規流入中國，以及輝達是否誤導投資人；眾議院能源暨商業委員會也要求輝達臨時執行長12/2前提出簡報。"],
+["11/21","川普結束亞洲行程返抵華府，公開表示輝達應接受黃仁勳道歉、讓他回去工作，並稱習近平也讚他是人才；Stand with Jensen連署網站同日更新公開信，要求董事會11/30前回應。"],
+["11/22","連署人數突破20萬；據彭博報導，董事會當天下午數小時內全票通過復職，川普參與討論，副總統范斯居中斡旋，代理執行長克雷斯等高層最後一刻才知情。"],
+["11/23","台灣時間晚間10點，董事會一致通過恢復黃仁勳職務並即刻生效，員工起立鼓掌歡迎；輝達單日大漲31.48%。",1],
+["11/23","川普受訪稱復職「是我談成的」；美國商務部同日將Megaspeed列入黑名單，加州檢方表示復職不改變調查，黃仁勳仍預計12/1接受眾院閉門詢問、12/3出席參院公開聽證。"]
+];
 function url(a){return a.u||(BASE+(a.c||a[1])+"/"+(a.id||a[0]));}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]});}
 /* 試算表：發布為CSV後把網址貼在這裡，空白則使用上方寫死的文章 */
@@ -193,13 +214,15 @@ PARTS.forEach(function(p){
   p.a.forEach(function(a){
     html+='<a class="card" href="'+url(a)+'" target="_blank" rel="noopener"><div class="ph">'+(a.img?'<img src="'+a.img+'" alt="'+esc(a.t)+'" loading="lazy" onerror="this.remove()">':'')+'<i>'+a.d+'</i></div><h3>'+esc(a.t)+'</h3></a>';
   });
-  html+='</div><button class="btn r" aria-label="下一頁">›</button></div></section>';
+  html+='</div><button class="btn r" aria-label="下一頁">›</button></div>';
+  if(p.n==="01"){html+='<div class="tl"><h3>11天復職時間軸</h3><ol>';TL.forEach(function(t){html+='<li'+(t[2]?' class="hot"':'')+'><b>'+t[0]+'</b><p>'+esc(t[1])+'</p></li>';});html+='</ol><p style="margin:0 0 14px"><a href="'+BASE+'world/4055421" target="_blank" rel="noopener">完整時間軸報導</a></p></div>';}
+  html+='</section>';
 });
 /* SOT */
 var hasSot=false;Object.keys(SOT_VIDEO).forEach(function(k){if(SOT_VIDEO[k])hasSot=true;});
 if(hasSot||/preview=1/.test(location.search)){
   navh+='<a href="#sot" target="_self" data-id="sot">特別報導</a>';
-  html+='<section id="sot"><div class="sh"><span class="pn">PART 06</span><h2>黃仁勳AI風暴特別報導：六大單元深度解析</h2></div><p class="intro">TVBS新聞部特別報導小組，12月5日完整專題，拆解黃仁勳風暴的產業、政治與台灣關鍵。</p><div class="sot">';
+  html+='<section id="sot"><div class="sh"><span class="pn">PART 06</span><h2>黃仁勳王者歸來特別報導：六大單元深度解析</h2></div><p class="intro">TVBS新聞部特別報導小組，12月5日完整專題，從輝達33年、日韓台人脈、美企治理、白宮與國會攻防到台灣應援，完整解讀黃仁勳回鍋。</p><div class="sot">';
   SOT_UNITS.forEach(function(u){
     html+='<div class="unit"><h3><small>'+u.n+'</small>'+esc(u.t)+'</h3>';
     u.i.forEach(function(s){
